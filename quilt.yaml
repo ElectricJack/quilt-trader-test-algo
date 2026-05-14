@@ -1,0 +1,33 @@
+name: simple-ma-crossover
+type: algorithm
+version: 1.0.0
+description: A tiny test algorithm for quilt-trader — buys SPY on a fast-SMA over slow-SMA crossover, sells on the reverse. Suitable for smoke-testing install-from-URL, algorithm instance lifecycle, and basic trade execution.
+entry_point: algorithm.py
+class_name: MaCrossoverAlgorithm
+
+requirements:
+  asset_types:
+    - equities
+  data_dependencies:
+    - symbol: SPY
+      timeframe: 1day
+      source: polygon
+
+config:
+  parameters:
+    - name: symbol
+      type: string
+      default: SPY
+      description: Underlying to trade.
+    - name: fast_window
+      type: int
+      default: 10
+      description: Fast SMA window in bars.
+    - name: slow_window
+      type: int
+      default: 30
+      description: Slow SMA window in bars. Must be greater than fast_window.
+    - name: quantity
+      type: int
+      default: 10
+      description: Share quantity per signal.
